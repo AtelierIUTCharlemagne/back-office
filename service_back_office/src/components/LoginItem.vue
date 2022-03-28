@@ -2,9 +2,9 @@
   <div class="col-md-12">
     <div class="card card-container">
       <img
-        id="profile-img"
+        id="users-img"
         src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-        class="profile-img-card"
+        class="users-img-card"
       />
       <Form @submit="handleLogin" :validation-schema="schema">
         <div class="form-group">
@@ -68,7 +68,7 @@ export default {
   },
   created() {
     if (this.loggedIn) {
-      this.$router.push("/profile");
+      this.$router.push("/users");
     }
   },
   methods: {
@@ -77,7 +77,7 @@ export default {
       console.log(user);
       this.$store.dispatch("auth/login", user).then(
         () => {
-          this.$router.push("/profile");
+          this.$router.push("/users");
         },
         (error) => {
           this.loading = false;
@@ -114,7 +114,7 @@ label {
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
-.profile-img-card {
+.users-img-card {
   width: 96px;
   height: 96px;
   margin: 0 auto 10px;
