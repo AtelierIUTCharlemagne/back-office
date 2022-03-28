@@ -18,6 +18,17 @@ const routes =  [
     name: "events",
     component: () => import("./components/EventsList")
   },
+  {
+    path: "/login",
+    name: "login-item",
+    component: () => import("./components/LoginItem")
+  }
+  ,
+  {
+    path: "/profile",
+    name: "profile",
+    component: () => import("./components/ProfileItem")
+  },
 ];
 const router = createRouter({
   history: createWebHistory(),
