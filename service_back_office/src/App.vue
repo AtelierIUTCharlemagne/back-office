@@ -3,12 +3,12 @@
     <nav class="navbar navbar-expand navbar-dark bg-dark">
         <router-link to="/" class="navbar-brand">Back Office</router-link>
         <div class="navbar-nav mr-auto">
-        <li class="nav-item">
-            <router-link to="/users" class="nav-link">Users</router-link>
-        </li>
-        <li class="nav-item">
-            <router-link to="/events" class="nav-link">Events</router-link>
-        </li>
+          <li class="nav-item">
+              <router-link to="/users" v-if="currentUser" class="nav-link">Users</router-link>
+          </li>
+          <li class="nav-item">
+              <router-link to="/events" v-if="currentUser" class="nav-link">Events</router-link>
+          </li>
         </div>
         <div v-if="!currentUser" class="navbar-nav ml-auto">
         <li class="nav-item">
@@ -21,7 +21,7 @@
         <div v-if="currentUser" class="navbar-nav ml-auto">
         <li class="nav-item">
             <router-link to="/profile" class="nav-link">
-            <font-awesome-icon icon="user" />
+            <font-awesome-icon icon="user" /> Profile
             {{ currentUser.username }}
             </router-link>
         </li>
