@@ -20,10 +20,10 @@
 
         <div v-if="currentUser" class="navbar-nav ml-auto">
         <li class="nav-item">
-            <router-link to="/profile" class="nav-link">
-            <font-awesome-icon icon="user" /> Profile
-            {{ currentUser.username }}
-            </router-link>
+            <!-- <router-link to="/profile" class="nav-link"> -->
+            <!-- <font-awesome-icon icon="user" /> Profile -->
+            <!-- {{ currentUser.username }} -->
+            <!-- </router-link> -->
         </li>
         <li class="nav-item">
             <a class="nav-link" @click.prevent="logOut">
