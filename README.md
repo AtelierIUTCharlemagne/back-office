@@ -2,8 +2,9 @@
 
 - thibaud TURLAN
 
-email: admin@reunionnous.com
-password: ouioui
+identifying:
+- email: admin@reunionnous.com
+- password: ouioui
 
 ```bash
 VUE_APP_API_URL=
