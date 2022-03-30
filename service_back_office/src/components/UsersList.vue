@@ -10,13 +10,26 @@
     </div>
     <div class="col-md-6">
       <h4>Users List</h4>
-      <ul class="list-group">
-        <!--  -->
-        <li class="list-group-item" :class="{ active: index == currentIndex }" v-for="(user, index) in listUsers" :key="index" @click="setActiveUsers(user, index)">
-          {{ user.username }} - {{ format_date(user.last_connection) }}
-        </li>
-        <!--  -->
-      </ul>
+      <!--  -->
+      <section v-if="errored">
+        <p>We are sorry, we are unable to retrieve this information at this time. Please try again later.</p>
+      </section>
+      <!--  -->
+
+      <section v-else>
+        <div v-if="loading">Chargement...</div>
+        <div v-else>
+          <!--  -->
+          <ul class="list-group">
+            <li class="list-group-item" :class="{ active: index == currentIndex }" v-for="(user, index) in listUsers" :key="index" @click="setActiveUsers(user, index)">
+              {{ user.username }} - {{ format_date(user.last_connection) }}
+            </li>
+          </ul>
+          <!--  -->
+
+        </div>
+      </section>
+
       
     </div>
     <div class="col-md-6">
@@ -33,10 +46,12 @@
       </div>
       <div v-else>
         <br />
-        <p>Please click on a Users...</p>
+        <p v-if="errored"></p>
+        <p v-else>Please click on a Users...</p>
       </div>
     </div>
   </div>
+      <!--  -->
 </template>
 <script>
 import UsersDataService from "../services/UsersDataService";
@@ -49,7 +64,9 @@ export default {
       listUsers: [],
       currentUsers: null,
       currentIndex: -1,
-      title: ""
+      title: "",
+      errored: false,
+      loading: true
     };
   },
   methods: {
@@ -60,8 +77,9 @@ export default {
           console.log(response.data.users);
         })
         .catch(e => {
+          this.errored = true;
           console.log(e);
-        });
+        }).finally(() => this.loading = false);
     },
     refreshList() {
       this.fetchAllUsers();
