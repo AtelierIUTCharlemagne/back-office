@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://docketu.iutnc.univ-lorraine.fr:62349/users/';
+const API_URL = 'http://docketu.iutnc.univ-lorraine.fr:62344/admin/';
 
 class AuthDataService {
   login(user) {
