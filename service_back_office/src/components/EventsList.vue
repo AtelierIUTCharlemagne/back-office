@@ -10,13 +10,24 @@
     </div>
     <div class="col-md-6">
       <h4>Events List</h4>
-      <ul class="list-group">
-        <!--  -->
-        <li class="list-group-item" :class="{ active: index == currentIndex }" v-for="(event, index) in listEvents" :key="index" @click="setActiveEvents(event, index)">
-          {{ event.title }} - {{ format_date(event.date_events) }}
-        </li>
-        <!--  -->
-      </ul>
+      <!--  -->
+      <section v-if="errored">
+        <p>We are sorry, we are unable to retrieve this information at this time. Please try again later.</p>
+      </section>
+      <!--  -->
+
+      <section v-else>
+        <div v-if="loading">loading...</div>
+        <div v-else>
+          <ul class="list-group">
+            <!--  -->
+            <li class="list-group-item" :class="{ active: index == currentIndex }" v-for="(event, index) in listEvents" :key="index" @click="setActiveEvents(event, index)">
+              {{ event.title }} - {{ format_date(event.date_events) }}
+            </li>
+            <!--  -->
+          </ul>
+        </div>
+      </section>
       
     </div>
     <div class="col-md-6">
@@ -32,7 +43,8 @@
       </div>
       <div v-else>
         <br />
-        <p>Please click on a Event...</p>
+        <p v-if="errored"></p>
+        <p v-else>Please click on a Users...</p>
       </div>
     </div>
   </div>
@@ -48,7 +60,9 @@ export default {
       listEvents: [],
       currentEvents: null,
       currentIndex: -1,
-      title: ""
+      title: "",
+      errored: false,
+      loading: true
     };
   },
   methods: {
@@ -59,8 +73,9 @@ export default {
           console.log(response.data);
         })
         .catch(e => {
+          this.errored = true;
           console.log(e);
-        });
+        }).finally(() => this.loading = false);
     },
     refreshList() {
       this.fetchAllEvents();
