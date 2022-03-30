@@ -8,7 +8,7 @@ class UsersDataService {
     return http.get(`/users/${id}`);
   }
   delete(id) {
-    return http.delete(`/users/${id}`);
+    return http.delete(`/users/admin/delete/${id}`);
   }
 }
 export default new UsersDataService();

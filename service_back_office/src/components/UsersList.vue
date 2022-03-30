@@ -88,7 +88,7 @@ export default {
       UsersDataService.delete(this.currentUsers.id_user)
         .then(response => {
           console.log(response.data);
-          this.$router.push({ name: "tutorials" });
+          this.$router.push({ name: "users" });
         })
         .catch(e => {
           console.log(e);
