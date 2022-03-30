@@ -76,6 +76,7 @@ export default {
     handleLogin(user) {
       this.loading = true;
       console.log(user);
+      console.log(process.env.VUE_APP_API_URL);
       this.$store.dispatch("auth/login", user).then(
         () => {
           this.$router.push("/users");

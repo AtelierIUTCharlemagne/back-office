@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-const API_URL = 'http://docketu.iutnc.univ-lorraine.fr:62344/admin/';
+const API_URL = 'http://docketu.iutnc.univ-lorraine.fr:62344/';
 
 class AuthDataService {
   login(user) {
     return axios
-      .post(API_URL + 'signin', {
+      .post(API_URL + 'admin/signin', {
         email: user.email,
         passwd: user.password
       })
