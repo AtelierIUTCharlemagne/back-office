@@ -39,6 +39,9 @@
           <label><strong>Username:</strong></label> {{ currentUsers.username }}
         </div>
         <div>
+          <label><strong>Email:</strong></label> {{ currentUsers.email }}
+        </div>
+        <div>
           <label><strong>last connection:</strong></label> {{ format_date(currentUsers.last_connection) }}
         </div>
         <!-- <router-link :to="'/users/' + currentUsers.id" class="btn btn-danger">Delete</router-link> -->
