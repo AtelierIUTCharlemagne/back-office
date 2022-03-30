@@ -17,7 +17,7 @@
       <!--  -->
 
       <section v-else>
-        <div v-if="loading">Chargement...</div>
+        <div v-if="loading">loading...</div>
         <div v-else>
           <!--  -->
           <ul class="list-group">
